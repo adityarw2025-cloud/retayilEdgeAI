@@ -1,0 +1,29 @@
+# =====================================================================
+# Optimized ByteTrack Configuration for Stable Person ID Tracking
+# =====================================================================
+# Prioritizes identity persistence: avoids Person 1 -> Person 3 -> Person 10
+# =====================================================================
+
+tracker_type: bytetrack
+
+# (float) First-stage match threshold: high-confidence detections for primary association
+track_high_thresh: 0.40
+
+# (float) Second-stage match threshold: recovers occluded or motion-blurred detections
+track_low_thresh: 0.10
+
+# (float) Threshold to initialize a NEW track.
+# Raising this (from 0.25 to 0.55) stops ByteTrack from eagerly creating new IDs for existing people
+new_track_thresh: 0.55
+
+# (int) Frames to keep lost tracks alive in memory.
+# Increasing (from 30 to 90) prevents ID resets when a person turns around, pauses, or steps behind an object
+track_buffer: 90
+
+# (float) Association similarity threshold (IoU match cost).
+# Lowering this (from 0.80 to 0.50) allows moving/walking people to be matched continuously across frames
+match_thresh: 0.50
+
+# (bool) Fuse detection confidence score with motion/IoU for matching stability
+fuse_score: True
+
